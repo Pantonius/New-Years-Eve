@@ -5,7 +5,7 @@
   "main": "test.js",
   "scripts": {
     "dev": "parcel index.html",
-    "pre-deploy": "parcel build index.html --out-dir dist --public-url /player",
+    "pre-deploy": "parcel build index.html --out-dir dist --public-url /New-Years-Eve",
     "deploy": "node publish"
   },
   "repository": {
