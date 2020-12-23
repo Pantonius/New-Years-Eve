@@ -5,7 +5,7 @@
   "main": "test.js",
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build index.html",
+    "build": "parcel build index.html --out-dir dist --public-url /lofi-player",
     "deploy": "node publish"
   },
   "repository": {
