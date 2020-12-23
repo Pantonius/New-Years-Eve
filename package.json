@@ -5,8 +5,8 @@
   "main": "test.js",
   "scripts": {
     "dev": "parcel index.html",
-    "pre-deploy": "rm -rf dist && parcel build index.html --public-url /parcel-gh-pages-deploy",
-    "deploy": "gh-pages -d dist"
+    "pre-deploy": "parcel build index.html --out-dir dist --public-url /player",
+    "deploy": "node publish"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,10 @@
     "since 2017-06"
   ],
   "devDependencies": {
-    "gh-pages": "^3.1.0",
     "dotenv": "^8.2.0",
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
+    "gh-pages": "^3.1.0"
   }
 }
