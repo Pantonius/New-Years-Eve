@@ -1,0 +1,32 @@
+{
+  "name": "silvester",
+  "version": "0.1.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "publish": "node publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pantonius/New-Years-Eve.git"
+  },
+  "author": "Pantonius",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pantonius/New-Years-Eve/issues"
+  },
+  "homepage": "https://github.com/Pantonius/New-Years-Eve#readme",
+  "browserslist": [
+    "since 2017-06"
+  ],
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "dotenv": "^8.2.0",
+    "gh-pages": "^3.1.0"
+  }
+}
