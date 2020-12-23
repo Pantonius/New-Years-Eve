@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "parcel index.html",
     "build": "parcel build index.html",
-    "publish": "node publish"
+    "deploy": "node publish"
   },
   "repository": {
     "type": "git",
