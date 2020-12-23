@@ -13,26 +13,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          submodules: true
-          fetch-depth: 0
       
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
       
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: "0.68.3"
+      - name: Pre-Build
+        run: GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }} npm run pre-deploy
       
       - name: Build
-        run: GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }} npm run build
-      
-      - name: Publish
         run: npm run deploy
-      
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
