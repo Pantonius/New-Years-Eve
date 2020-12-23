@@ -17,6 +17,9 @@ jobs:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
       
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.4
+      
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -26,7 +29,7 @@ jobs:
         run: GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }} yarn pre-deploy
       
       - name: Build
-        run: yarn deploy
+        run: yarn deploy && hugo --minify
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
