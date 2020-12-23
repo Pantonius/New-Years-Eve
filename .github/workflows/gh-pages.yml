@@ -29,7 +29,7 @@ jobs:
         run: GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }} yarn build
       
       - name: Publish
-        run: yarn publish
+        run: yarn deploy
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
