@@ -15,7 +15,6 @@ async function getPlaylist(id) {
 
 async function getPlaylistItemCount(id) {
   let response = await getPlaylist(id);
-  console.log(response);
   
   return response.pageInfo.totalResults;
 }
