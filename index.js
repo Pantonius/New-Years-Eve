@@ -1,10 +1,5 @@
-import Firework from "./canvas/firework";
-import Vector from "./util/vector";
-
-import google from "./services/googleapi";
-
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
+import google from './services/googleapi';
+import drawFireworks from './canvas/draw';
 
 const countDownDate = new Date('Januar 1, 2021 00:00:00').getTime();
 //const countDownDate = new Date(Date.now() + 5000).getTime();
@@ -16,46 +11,6 @@ const previousTrack = document.getElementById('previousTrack');
 const toggleTrack = document.getElementById('toggleTrack');
 const nextTrack = document.getElementById('nextTrack');
 const playlistId = 'PLr6S79MwreeUBXyVbLKjIuOZ2QWV4U79f';
-
-// ******************************
-// Fireworks
-// ******************************
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-
-let fireworks = [];
-let gravity = new Vector(0, .2, 0);
-
-let draw;
-function drawFireworks() {
-  draw = requestAnimationFrame(drawFireworks);
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  if(Math.random() < (canvas.width / 7500)) {
-    let firework = new Firework(Math.random() * canvas.width, canvas.height, 1, gravity);
-    firework.velocity = new Vector((Math.random() * 2) - 1, - Math.sqrt(2 * gravity.y * canvas.height * (.2 + Math.random() * .6)));
-
-    fireworks.push(firework);
-  }
-  
-  for(let i = fireworks.length -1; i >= 0; i--) {
-    let firework = fireworks[i];
-
-    firework.update();
-    firework.show(ctx);
-
-    if(firework.expired()) {
-      let index = fireworks.indexOf(firework);
-      fireworks.splice(index, 1);
-    }
-  }
-}
 
 // ******************************
 // Countdown
@@ -129,8 +84,6 @@ async function initPlayer() {
       'onError': onError
     }
   });
-
-  console.log(player);
 }
 
 // Player Events
@@ -156,7 +109,7 @@ function onError(event) {
     case 100:
     case 101:
     case 150:
-      console.error(player.getVideoUrl())
+      console.error('Could not play video: ' + player.getVideoUrl())
       nextVideo();
 
       break;
@@ -212,4 +165,8 @@ nextTrack.addEventListener('click', () => {
     nextVideo();
 });
 
-window.onload = initPlayer();
+async function init() {
+  await initPlayer();
+}
+
+window.onload = init();

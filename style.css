@@ -19,6 +19,8 @@ body {
 
   font-family: 'Roboto', sans-serif;
   text-align: center;
+
+  overflow: hidden;
 }
 
 a {
@@ -80,6 +82,54 @@ div#controls {
 
 div#controls > * {
   cursor: pointer;
+}
+
+div.background {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  image-rendering: crisp-edges;
+}
+
+div.background.backdrop {
+  background-color: #000;
+}
+
+div.background#sun {
+  background-size: 10vmax 10vmax;
+  background-image: url('./assets/sun.png');
+  
+  width: 10vmax;
+  height: 10vmax;
+
+  left: 0;
+  top: 0;
+}
+
+div.background.image.l1 {
+  background-image: url('./assets/buildings_l1.png');
+}
+
+div.background.image.l2 {
+  background-image: url('./assets/buildings_l2.png');
+}
+
+div.background.image.l3 {
+  background-image: url('./assets/buildings_l3.png');
+  opacity: .4;
+}
+
+div.background.light.l1 {
+  background-image: url('./assets/light-l1.png');
+}
+
+div.background.light.l2 {
+  background-image: url('./assets/light-l2.png');
+  opacity: .3;
 }
 
 @media only screen and (max-width: 600px) {
