@@ -166,9 +166,9 @@ nextTrack.addEventListener('click', () => {
     nextVideo();
 });
 
-volumeRange.addEventListener('input', (e) => {
-  player.setVolume(e.value);
-})
+volumeRange.addEventListener('input', () => {
+  player.setVolume(volumeRange.value);
+});
 
 async function init() {
   await initPlayer();
