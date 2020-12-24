@@ -24,10 +24,13 @@
     <div id="container">
       <h1 id="countdown" onselectstart="return false"></h1>
       <h2 id="title" onselectstart="return false"></h2>
-      <div id="controls">
-        <i class="material-icons md-48" id="previousTrack">skip_previous</i>
-        <i class="material-icons md-48" id="toggleTrack">play_arrow</i>
-        <i class="material-icons md-48" id="nextTrack">skip_next</i>
+      <div class="controls">
+        <input type="range" id="volume" name="volume" min="0" max="100" value="70">
+        <div class="buttons">
+          <i class="material-icons md-48" id="previousTrack">skip_previous</i>
+          <i class="material-icons md-48" id="toggleTrack">play_arrow</i>
+          <i class="material-icons md-48" id="nextTrack">skip_next</i>
+        </div>
       </div>
       <a id="currentSong" href="" rel="noopener noreferrer external" target="_blank">Click me for Current Song</a>
     </div>

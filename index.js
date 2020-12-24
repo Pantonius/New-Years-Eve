@@ -10,6 +10,7 @@ const currentSong = document.getElementById('currentSong');
 const previousTrack = document.getElementById('previousTrack');
 const toggleTrack = document.getElementById('toggleTrack');
 const nextTrack = document.getElementById('nextTrack');
+const volumeRange = document.getElementById('volume');
 const playlistId = 'PLr6S79MwreeUBXyVbLKjIuOZ2QWV4U79f';
 
 // ******************************
@@ -164,6 +165,10 @@ nextTrack.addEventListener('click', () => {
   if(player)
     nextVideo();
 });
+
+volumeRange.addEventListener('input', (e) => {
+  player.setVolume(e.value);
+})
 
 async function init() {
   await initPlayer();
