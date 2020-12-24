@@ -1,4 +1,4 @@
-import Firework from 'firework';
+import Firework from './firework';
 import Vector from '../util/vector';
 
 // ******************************
