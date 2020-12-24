@@ -162,6 +162,7 @@ nextTrack.addEventListener('click', () => {
 volumeRange.addEventListener('input', () => {
   player.setVolume(volumeRange.value);
 });
+volumeRange.value = 80;
 
 async function init() {
   await initPlayer();
