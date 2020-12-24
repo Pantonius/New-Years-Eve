@@ -46,8 +46,9 @@ addEventListener('resize', () => {
 let fireworks = [];
 let gravity = new Vector(0, .2, 0);
 
+let draw;
 function drawFireworks() {
-  requestAnimationFrame(drawFireworks);
+  draw = requestAnimationFrame(drawFireworks);
   ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 

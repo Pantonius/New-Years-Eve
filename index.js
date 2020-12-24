@@ -1,5 +1,5 @@
 import google from './services/googleapi';
-import drawFireworks from './canvas/draw';
+import canvas from './canvas';
 
 const countDownDate = new Date('Januar 1, 2021 00:00:00').getTime();
 //const countDownDate = new Date(Date.now() + 5000).getTime();
@@ -30,10 +30,11 @@ let countdownInterval = setInterval(() => {
   title.innerHTML = "until New Year's Eve";
 
   if(until < 0) {
-    drawFireworks();
-
     countdown.innerHTML = 'HAPPY NEW YEAR';
     title.innerHTML = new Date().toTimeString().substr(0, 8);
+
+    canvas.drawFireworks();
+    clearInterval(countdownInterval);
 
     // After New Year
     setInterval(() => {
@@ -41,8 +42,6 @@ let countdownInterval = setInterval(() => {
     
       countdown.innerHTML = 'HAPPY NEW YEAR';
       title.innerHTML = time;
-      
-      clearInterval(countdownInterval);
     }, 1000);
   }
 }, 1000);
@@ -57,12 +56,6 @@ function formatTime(number) {
 // ******************************
 // LOFI-PLAYER
 // ******************************
-// Load API asynchronously
-/*let iframeApiScriptTag = document.createElement('script');
-iframeApiScriptTag.src = "https://www.youtube.com/iframe_api";
-let playerScriptTag = document.getElementById('player');
-playerScriptTag.parentNode.insertBefore(iframeApiScriptTag, playerScriptTag);
-*/
 
 // Initialize Player
 let player;
@@ -174,4 +167,7 @@ async function init() {
   await initPlayer();
 }
 
+// ******************************
+// Initialize
+// ******************************
 window.onload = init();

@@ -33,6 +33,8 @@ a {
   
   margin-left: auto;
   margin-right: auto;
+  
+  z-index: 2;
 }
 
 #countdown {
@@ -117,7 +119,7 @@ input[type=range]::-webkit-slider-thumb {
   background: black url('./assets/baseline_volume_down_white_18dp.png');
   background-repeat: no-repeat;
   background-position: center;
-  
+
   border: none;
   border-radius: 50%;
 
@@ -136,6 +138,16 @@ input[type=range]::-moz-range-thumb {
   border-radius: 50%;
 
   cursor: pointer;
+}
+
+#previousTrack, #toggleTrack, #nextTrack {
+  transition: font-size .2s;
+}
+
+#previousTrack:hover, #previousTrack:active, #toggleTrack:hover, #toggleTrack:active, #nextTrack:hover, #nextTrack:active {
+  font-size: 60px;
+
+  transition: font-size .2s;
 }
 
 div.background {
@@ -184,6 +196,10 @@ div.background.light.l1 {
 div.background.light.l2 {
   background-image: url('./assets/light-l2.png');
   opacity: .3;
+}
+
+#foreground-canvas {
+  z-index: 1;
 }
 
 @media only screen and (max-width: 600px) {
