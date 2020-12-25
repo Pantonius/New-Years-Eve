@@ -15,11 +15,13 @@ function drawBackground() {
   let radian = (seconds * Math.PI / 12 / 60 / 60) - (Math.PI / 2);
 
   let y = height - Math.sin(radian) * height - (sun.style.height / 2);
-  let grey = 255 * -y / height;
+  let red = Math.sin(radian - Math.PI * .1) * 150;
+  let green = Math.sin(radian) * 240;
+  let blue = Math.sin(radian) * 250;
   let opacity = y / height;
 
   sun.style.transform = `translate(${width / 3}px, ${y}px)`;
-  background.style.background = `rgb(${grey}, ${grey}, ${grey})`; 
+  background.style.background = `rgb(${red}, ${green}, ${blue})`; 
   
   for(let i = 0; i < lights.length; i++) {
     lights[i].style.opacity = opacity - opacity * i * .75;
