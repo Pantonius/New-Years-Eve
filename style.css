@@ -14,6 +14,10 @@ body {
   display: grid;
   place-items: center;
 
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
   background-color: #000;
   color: #fff;
 
@@ -28,12 +32,17 @@ a {
   color: #fff;
 }
 
-#container {
+div#container {
   position: absolute;
-  
-  margin-left: auto;
-  margin-right: auto;
-  
+
+  min-width: fit-content;
+  max-width: 60vw;
+
+  /* Centering this way due to centering issue in chrome */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
   z-index: 2;
 }
 
@@ -158,7 +167,7 @@ div.background {
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
-  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
 }
 
 div.background.backdrop {
@@ -208,6 +217,11 @@ div.background.light.l2 {
   div a {
     font-size: 16px;
     top: 8px;
+  }
+
+  div#container {
+    /* Setting a min-width so the countdown isn't too cramped on small screens */
+    min-width: 80vw;
   }
 
   #countdown {
