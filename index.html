@@ -10,6 +10,7 @@
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="./assets/sun.png">
   </head>
   <body>
     <div class="background backdrop"></div>
@@ -23,7 +24,7 @@
     <canvas id="foreground-canvas"></canvas>
     <div id="container">
       <h1 id="countdown" onselectstart="return false"></h1>
-      <h2 id="title" onselectstart="return false"></h2>
+      <h2 id="title" class="hidden" onselectstart="return false"></h2>
       <div class="controls">
         <input type="range" id="volume" name="volume" min="0" max="100" value="70">
         <div class="buttons">

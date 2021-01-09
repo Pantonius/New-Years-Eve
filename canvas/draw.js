@@ -11,14 +11,14 @@ const lights = document.getElementsByClassName('background light');
 function drawBackground() {
   let width = window.innerWidth;
   let height = window.innerHeight;
-  let seconds = new Date().getSeconds();
+  let seconds = new Date().getTime() / 1000;
   let radian = (seconds * Math.PI / 12 / 60 / 60) - (Math.PI / 2);
 
   let y = height - Math.sin(radian) * height - (sun.style.height / 2);
   let red = Math.sin(radian - Math.PI * .1) * 150;
   let green = Math.sin(radian) * 240;
   let blue = Math.sin(radian) * 250;
-  let opacity = y / height;
+  let opacity = (y  - height) / height;
 
   sun.style.transform = `translate(${width / 3}px, ${y}px)`;
   background.style.background = `rgb(${red}, ${green}, ${blue})`; 
@@ -27,9 +27,6 @@ function drawBackground() {
     lights[i].style.opacity = opacity - opacity * i * .75;
   }
 }
-
-drawBackground();
-setInterval(drawBackground, 1000);
 
 // ******************************
 // Fireworks
@@ -72,8 +69,11 @@ function drawFireworks() {
       fireworks.splice(index, 1);
     }
   }
+
+  return draw;
 }
 
 export {
-  drawFireworks
+  drawFireworks,
+  drawBackground
 }

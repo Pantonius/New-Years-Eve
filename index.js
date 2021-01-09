@@ -1,8 +1,6 @@
 import google from './services/googleapi';
 import canvas from './canvas';
 
-const countDownDate = new Date('Januar 1, 2021 00:00:00').getTime();
-//const countDownDate = new Date(Date.now() + 5000).getTime();
 const countdown = document.getElementById('countdown');
 const title = document.getElementById('title');
 
@@ -18,31 +16,41 @@ const playlistId = 'PLr6S79MwreeUBXyVbLKjIuOZ2QWV4U79f';
 // ******************************
 let countdownInterval = setInterval(() => {
   // until New Year
+  let countDownDate = new Date(`Jan 1 ${ new Date().getFullYear() + 1 } 00:00:00`).getTime();
   let now = new Date().getTime();
   let until = countDownDate - now;
 
-  let days = Math.floor(until / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((until % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((until % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((until % (1000 * 60)) / 1000);
+  let year = new Date(now).getFullYear();
+  let leapYear = (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
 
-  countdown.innerHTML = `${formatTime(days)}d ${formatTime(hours)}h ${formatTime(minutes)}m ${formatTime(seconds)}s`;
-  title.innerHTML = "until New Year's Eve";
+  let draw;
 
-  if(until < 0) {
-    countdown.innerHTML = 'HAPPY NEW YEAR';
-    title.innerHTML = new Date().toTimeString().substr(0, 8);
+  // begin countdown with first day of december
+  if(convertTime(until).days < 31) {
+    if(draw) cancelAnimationFrame(draw);
 
-    canvas.drawFireworks();
-    clearInterval(countdownInterval);
+    let time = convertTime(until);
 
-    // After New Year
-    setInterval(() => {
-      let time = new Date().toTimeString().substr(0, 8);
+    countdown.innerHTML = `${formatTime(time.days)}d ${formatTime(time.hours)}h ${formatTime(time.minutes)}m ${formatTime(time.seconds)}s`;
     
-      countdown.innerHTML = 'HAPPY NEW YEAR';
-      title.innerHTML = time;
-    }, 1000);
+    title.classList.toggle('hidden', false);
+    title.innerHTML = "until New Year's Eve";
+    
+  // draw fireworks on NYE
+  } else if(convertTime(until).days >= (365 + leapYear) - 1) {
+    if(draw) cancelAnimationFrame(draw);
+
+    countdown.innerHTML = 'HAPPY NEW YEAR';
+    
+    title.classList.toggle('hidden', false);
+    title.innerHTML = new Date(now).toTimeString().substr(0, 8);
+
+    draw = canvas.drawFireworks();
+  } else {
+    if(draw) cancelAnimationFrame(draw);
+
+    countdown.innerHTML = new Date(now).toTimeString().substr(0, 8);
+    title.classList.toggle('hidden', true);
   }
 }, 1000);
 
@@ -51,6 +59,15 @@ function formatTime(number) {
     return `0${number}`;
   else
     return number;
+}
+
+function convertTime(millis) {
+  return {
+    days: Math.floor(millis / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((millis % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((millis % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((millis % (1000 * 60)) / 1000)
+  };
 }
 
 // ******************************
@@ -164,11 +181,14 @@ volumeRange.addEventListener('input', () => {
 });
 volumeRange.value = 80;
 
-async function init() {
-  await initPlayer();
-}
-
 // ******************************
 // Initialize
 // ******************************
+async function init() {
+  canvas.drawBackground();
+  setInterval(canvas.drawBackground, 1000);
+  
+  await initPlayer();
+}
+
 window.onload = init();
